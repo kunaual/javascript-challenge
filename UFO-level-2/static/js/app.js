@@ -7,7 +7,19 @@ var button = d3.select("#filter-btn");
 //var datefield = d3.select("#datetime");
 button.on("click", filterClick);
 
-//console.log(datefield);
+//init the table w/everything
+data.forEach(function (ufoEvent) {
+    console.log(ufoEvent)
+    var row = tbody.append("tr");
+    //loop through each key/value pair in the results Date, city, state, country, shape, durationMinutes, comments
+    //and put the value on the table
+    Object.entries(ufoEvent).forEach(function ([key, value]) {
+        //   console.log(key, value);
+        var cell = row.append("td").text(value);
+
+    });
+
+});
 
 function filterClick() {
     // Prevent the page from refreshing
@@ -20,9 +32,10 @@ function filterClick() {
 
 
     var dateValue = d3.select("#datetime").node().value;
+    var cityValue = d3.select("#city").node().value;
 
     //get data from the date field
-    console.log(dateValue);
+    console.log(cityValue);
 
     //filter data for records that match the inputted date value
     var filteredUFO = data.filter(ufoData => ufoData.datetime === dateValue);
