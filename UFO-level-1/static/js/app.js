@@ -11,14 +11,19 @@ button.on("click", filterClick);
 
 function filterClick() {
     // Prevent the page from refreshing
-    d3.event.preventDefault();
+    //d3.event.preventDefault();
 
     console.log("filter button was clicked!");
+
+    //clear any prev. values in the table
+    tbody.html("");
+
 
     var dateValue = d3.select("#datetime").node().value;
 
     //get data from the date field
     console.log(dateValue);
+
     //filter data for records that match the inputted date value
     var filteredUFO = data.filter(ufoData => ufoData.datetime === dateValue);
     console.log(filteredUFO);
