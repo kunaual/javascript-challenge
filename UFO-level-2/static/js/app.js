@@ -4,6 +4,8 @@ var tableData = data;
 //get reference to the page's empty table body
 var tbody = d3.select("tbody");
 var button = d3.select("#filter-btn");
+var cbutton = d3.select("#clear-btn");
+//var filterBlock = d3.select('#city');
 
 
 //init the table w/everything
@@ -32,6 +34,13 @@ function filterUFOs(ufoRecord) {
     console.log(cityValue);
     return true;
 
+};
+
+function clearClick() {
+    console.log("clear button was clicked!");
+    //clear any prev. values in the table
+    tbody.html("");
+    init();
 };
 
 function filterClick() {
@@ -69,17 +78,14 @@ function filterClick() {
         && (((ufoData.country === countryValue.toLowerCase()) && (countryValue)) || !(countryValue))
         && (((ufoData.shape === shapeValue.toLowerCase()) && (shapeValue)) || !(shapeValue))
     );
-    //var filteredUFO = data.filter(filterUFOs);
-    // console.log(filteredUFO);
+
 
     //loop through each of the filtered rsults and add to the table
     filteredUFO.forEach(function (ufoEvent) {
-        //    console.log(ufoEvent)
         var row = tbody.append("tr");
         //loop through each key/value pair in the results Date, city, state, country, shape, durationMinutes, comments
         //and put the value on the table
         Object.entries(ufoEvent).forEach(function ([key, value]) {
-            //   console.log(key, value);
             var cell = row.append("td").text(value);
 
         });
@@ -91,5 +97,5 @@ function filterClick() {
 
 button.on("click", filterClick);
 //does this need form.on("submit",<runfunction>)
-
+cbutton.on("click", clearClick);
 init();
