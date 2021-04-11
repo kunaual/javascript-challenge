@@ -33,7 +33,9 @@ function clearClick() {
 };
 
 function filterClick() {
-
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+    
     console.log("filter button was clicked!");
 
     //clear any prev. values in the table

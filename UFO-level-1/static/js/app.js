@@ -23,7 +23,7 @@ data.forEach(function (ufoEvent) {
 
 function filterClick() {
     // Prevent the page from refreshing
-    //d3.event.preventDefault();
+    d3.event.preventDefault();
 
     console.log("filter button was clicked!");
 
