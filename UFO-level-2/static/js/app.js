@@ -3,9 +3,10 @@ console.log("app.js loaded!")
 var tableData = data;
 //get reference to the page's empty table body
 var tbody = d3.select("tbody");
+
 var button = d3.select("#filter-btn");
 var cbutton = d3.select("#clear-btn");
-//var filterBlock = d3.select('#city');
+
 
 
 //init the table w/everything
@@ -23,18 +24,6 @@ function init() {
     })
 };
 
-function filterUFOs(ufoRecord) {
-    //ufoData => ufoData.datetime === dateValue
-    console.log("in new function")
-
-    var dateValue = d3.select("#datetime").node().value;
-    var cityValue = d3.select("#city").node().value;
-
-    //get data from the date field
-    console.log(cityValue);
-    return true;
-
-};
 
 function clearClick() {
     console.log("clear button was clicked!");
@@ -44,8 +33,6 @@ function clearClick() {
 };
 
 function filterClick() {
-    // Prevent the page from refreshing
-    //d3.event.preventDefault();
 
     console.log("filter button was clicked!");
 
@@ -58,18 +45,6 @@ function filterClick() {
     var countryValue = d3.select("#country").node().value;
     var shapeValue = d3.select("#shape").node().value;
 
-    // console.log(typeOf(dateValue));
-    console.log("dateValue:" + dateValue + "x");
-    console.log(!(dateValue));// && dateValue !== null))
-
-    if (cityValue) {
-        console.log("cityValue is truish");
-    };
-    if (dateValue) {
-        console.log("dateValue is truish");
-    } else {
-        console.log("date value is falsish")
-    };
 
     //text values in data are stored in all lowercase, hence toLowerCase() in filtering
     var filteredUFO = data.filter(ufoData => (((ufoData.datetime === dateValue) && (dateValue)) || !(dateValue))
