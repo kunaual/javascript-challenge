@@ -4,22 +4,35 @@ var tableData = data;
 //get reference to the page's empty table body
 var tbody = d3.select("tbody");
 var button = d3.select("#filter-btn");
-//var datefield = d3.select("#datetime");
-button.on("click", filterClick);
+
 
 //init the table w/everything
-data.forEach(function (ufoEvent) {
-    console.log(ufoEvent)
-    var row = tbody.append("tr");
-    //loop through each key/value pair in the results Date, city, state, country, shape, durationMinutes, comments
-    //and put the value on the table
-    Object.entries(ufoEvent).forEach(function ([key, value]) {
-        //   console.log(key, value);
-        var cell = row.append("td").text(value);
+function init() {
+    data.forEach(function (ufoEvent) {
+        var row = tbody.append("tr");
+        //loop through each key/value pair in the results Date, city, state, country, shape, durationMinutes, comments
+        //and put the value on the table
+        Object.entries(ufoEvent).forEach(function ([key, value]) {
+            //   console.log(key, value);
+            var cell = row.append("td").text(value);
 
-    });
+        });
 
-});
+    })
+};
+
+function filterUFOs(ufoRecord) {
+    //ufoData => ufoData.datetime === dateValue
+    console.log("in new function")
+
+    var dateValue = d3.select("#datetime").node().value;
+    var cityValue = d3.select("#city").node().value;
+
+    //get data from the date field
+    console.log(cityValue);
+    return true;
+
+};
 
 function filterClick() {
     // Prevent the page from refreshing
@@ -30,20 +43,38 @@ function filterClick() {
     //clear any prev. values in the table
     tbody.html("");
 
-
     var dateValue = d3.select("#datetime").node().value;
     var cityValue = d3.select("#city").node().value;
+    var stateValue = d3.select("#state").node().value;
+    var countryValue = d3.select("#country").node().value;
+    var shapeValue = d3.select("#shape").node().value;
 
-    //get data from the date field
-    console.log(cityValue);
+    // console.log(typeOf(dateValue));
+    console.log("dateValue:" + dateValue + "x");
+    console.log(!(dateValue));// && dateValue !== null))
 
-    //filter data for records that match the inputted date value
-    var filteredUFO = data.filter(ufoData => ufoData.datetime === dateValue);
-    console.log(filteredUFO);
+    if (cityValue) {
+        console.log("cityValue is truish");
+    };
+    if (dateValue) {
+        console.log("dateValue is truish");
+    } else {
+        console.log("date value is falsish")
+    };
+
+    //text values in data are stored in all lowercase, hence toLowerCase() in filtering
+    var filteredUFO = data.filter(ufoData => (((ufoData.datetime === dateValue) && (dateValue)) || !(dateValue))
+        && (((ufoData.city === cityValue.toLowerCase()) && (cityValue)) || !(cityValue))
+        && (((ufoData.state === stateValue.toLowerCase()) && (stateValue)) || !(stateValue))
+        && (((ufoData.country === countryValue.toLowerCase()) && (countryValue)) || !(countryValue))
+        && (((ufoData.shape === shapeValue.toLowerCase()) && (shapeValue)) || !(shapeValue))
+    );
+    //var filteredUFO = data.filter(filterUFOs);
+    // console.log(filteredUFO);
 
     //loop through each of the filtered rsults and add to the table
     filteredUFO.forEach(function (ufoEvent) {
-        console.log(ufoEvent)
+        //    console.log(ufoEvent)
         var row = tbody.append("tr");
         //loop through each key/value pair in the results Date, city, state, country, shape, durationMinutes, comments
         //and put the value on the table
@@ -52,8 +83,13 @@ function filterClick() {
             var cell = row.append("td").text(value);
 
         });
-    
+
     });
 
 
-}
+};
+
+button.on("click", filterClick);
+//does this need form.on("submit",<runfunction>)
+
+init();
