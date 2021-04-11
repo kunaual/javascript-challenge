@@ -10,6 +10,7 @@ var cbutton = d3.select("#clear-btn");
 
 
 //init the table w/everything
+//next interation, take dataset as imput value and populate the table w/that data.  then don't need to repeat thie code in the filter block
 function init() {
     data.forEach(function (ufoEvent) {
         var row = tbody.append("tr");
@@ -31,7 +32,7 @@ function init() {
 };
 
 //this is a silly way to do this, the real way would be to fix the dataset one time
-//but just doing this for practice
+//but doing this for practice
 function fixComments(text){
 
     text = text.replace(/&#44/g,',');

@@ -22,5 +22,5 @@ UFO-level-2:
 * static/css/style.css - style sheet updated for header text color and background image attributes.
 * static/images/redorangeUFO.png - ufo icon for header bar
 * static/js/data.js - starter code dataset 
-* static/js/app.js - created init function to initialize the table with all results.  Added event handling for clicking the clear filter button to clear the values in the filter block fields and re-initilize the table. Updated the filterClick funtion to handle filtering the new fields.
+* static/js/app.js - created init function to initialize the table with all results.  Added event handling for clicking the clear filter button to clear the values in the filter block fields and re-initilize the table. Updated the filterClick funtion to handle filtering the new fields. Added fixComments function to update &#44 type text back to their characters.
 * index.html - added city, state, country, and shape fields to filter block. Added Clear filter button including onClick actions. Changed UFO icon image in navbar.
