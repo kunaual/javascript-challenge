@@ -71,6 +71,5 @@ function filterClick() {
 };
 
 button.on("click", filterClick);
-//does this need form.on("submit",<runfunction>)
 cbutton.on("click", clearClick);
 init();
