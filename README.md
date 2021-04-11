@@ -10,6 +10,7 @@ Repository contains 2 mini projects
 
 
 Files:
+
 UFO-level-1:
 * static/css/style.css - starter code style sheet
 * static/images/ - contains starter code nasa.jpg and ufo.svg
