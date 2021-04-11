@@ -17,12 +17,29 @@ function init() {
         //and put the value on the table
         Object.entries(ufoEvent).forEach(function ([key, value]) {
             //   console.log(key, value);
-            var cell = row.append("td").text(value);
+            var fixedText;
+            if (key ==='comments'){
+                fixedText = fixComments(value);
+            } else {
+                fixedText = value;
+            }
+            var cell = row.append("td").text(fixedText);
 
         });
 
     })
 };
+
+//this is a silly way to do this, the real way would be to fix the dataset one time
+//but just doing this for practice
+function fixComments(text){
+
+    text = text.replace(/&#44/g,',');
+    text = text.replace(/&#39/g,'\'');
+    text = text.replace(/&quot;/g,'\'');
+    text = text.replace(/&#33/g,'!');
+    return text;
+}
 
 
 function clearClick() {
@@ -35,7 +52,7 @@ function clearClick() {
 function filterClick() {
     // Prevent the page from refreshing
     d3.event.preventDefault();
-    
+
     console.log("filter button was clicked!");
 
     //clear any prev. values in the table
@@ -63,7 +80,14 @@ function filterClick() {
         //loop through each key/value pair in the results Date, city, state, country, shape, durationMinutes, comments
         //and put the value on the table
         Object.entries(ufoEvent).forEach(function ([key, value]) {
-            var cell = row.append("td").text(value);
+            var fixedText;
+            if (key ==='comments'){
+                fixedText = fixComments(value);
+            } else {
+                fixedText = value;
+            }
+            var cell = row.append("td").text(fixedText);
+            
 
         });
 
