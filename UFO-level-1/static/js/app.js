@@ -33,7 +33,7 @@ function filterClick() {
 
     var dateValue = d3.select("#datetime").node().value;
     if (!dateValue){
-        d3.select("#datetime").node().value = "Enter date here to filter data. Try 1/2/2010";
+        d3.select("#datetime").node().placeholder = "Enter date here to filter data. Try 1/2/2010";
     }
 
     //get data from the date field
