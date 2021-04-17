@@ -4,8 +4,8 @@ var tableData = data;
 //get reference to the page's empty table body
 var tbody = d3.select("tbody");
 var button = d3.select("#filter-btn");
-//var datefield = d3.select("#datetime");
-button.on("click", filterClick);
+var dateFilter = d3.select("#datetime")
+
 
 //init the table w/everything
 data.forEach(function (ufoEvent) {
@@ -32,12 +32,15 @@ function filterClick() {
 
 
     var dateValue = d3.select("#datetime").node().value;
+    if (!dateValue){
+        d3.select("#datetime").node().value = "Enter date here to filter data. Try 1/2/2010";
+    }
 
     //get data from the date field
     console.log(dateValue);
 
     //filter data for records that match the inputted date value
-    var filteredUFO = data.filter(ufoData => ufoData.datetime === dateValue);
+    var filteredUFO = data.filter(ufoData => (ufoData.datetime === dateValue && (dateValue)) || !(dateValue));
     console.log(filteredUFO);
 
     //loop through each of the filtered rsults and add to the table
@@ -51,8 +54,13 @@ function filterClick() {
             var cell = row.append("td").text(value);
 
         });
-    
+
     });
 
 
 }
+
+button.on("click", filterClick);
+//when user updates filter date and leaves the field, run the filter function
+dateFilter.on("change", filterClick);
+

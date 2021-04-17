@@ -10,7 +10,7 @@ var cbutton = d3.select("#clear-btn");
 
 
 //init the table w/everything
-//next interation, take dataset as imput value and populate the table w/that data.  then don't need to repeat thie code in the filter block
+//next interation, take dataset as input value and populate the table w/that data.  then don't need to repeat thie code in the filter block
 function init() {
     data.forEach(function (ufoEvent) {
         var row = tbody.append("tr");
@@ -75,7 +75,7 @@ function filterClick() {
     );
 
 
-    //loop through each of the filtered rsults and add to the table
+    //loop through each of the filtered results and add to the table
     filteredUFO.forEach(function (ufoEvent) {
         var row = tbody.append("tr");
         //loop through each key/value pair in the results Date, city, state, country, shape, durationMinutes, comments
